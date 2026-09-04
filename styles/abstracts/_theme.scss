@@ -2,8 +2,8 @@
 
 :root,
 [data-theme='light'] {
-  --bg-overlay: rgba(255, 255, 255, 0.88);
-  --bg-overlay-edge: rgba(255, 255, 255, 0.72);
+  --bg-overlay: rgba(255, 255, 255, 0.99);
+  --bg-overlay-edge: rgba(255, 255, 255, 0.9);
   --text: #{$color-text-light};
   --heading: #{$color-primary};
   --link: #{$color-primary};
@@ -18,8 +18,8 @@
 }
 
 [data-theme='dark'] {
-  --bg-overlay: rgba(8, 10, 18, 0.78);
-  --bg-overlay-edge: rgba(12, 14, 24, 0.55);
+  --bg-overlay: rgba(8, 10, 18, 0.99);
+  --bg-overlay-edge: rgba(12, 14, 24, 0.9);
   --text: #e6e8f0;
   --heading: #c5ceff;
   --link: #9db4ff;

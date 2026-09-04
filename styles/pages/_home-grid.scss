@@ -3,6 +3,8 @@
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
     gap: 5rem;
+    justify-items: center;
+    align-items: center;
 
     a{
         text-decoration: none;
@@ -26,7 +28,9 @@
         transform: rotate(45deg);
 
         div{
-            transform: rotate(-45deg) translateX(-6rem) translateY(7rem);
+            transform: rotate(-45deg) translateX(-4rem) translateY(7rem);
+            text-align: center;
+            max-width: 18rem;
         }
 
         h2{
