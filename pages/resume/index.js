@@ -1,68 +1,113 @@
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import Headline from "../../components/header/headline";
 import TableOfContents from "../../components/sidebars/tableOfContents";
 import { withRouter } from "next/router";
 
 const Resume = () => {
-    const resumeList = [
-        {
-            id: "charter",
-            job: "Charter Communications"
-        },
-        { 
-            id: "diversey-freelance", 
-            job: "Diversey (Freelance)" 
-        }, 
-        { 
-            id: "lowes", 
-            job: "Lowe's" 
-        }, 
-        { 
-            id: "limu", 
-            job: "Cognizant (Liberty Mutual)" 
-        }, 
-        { 
-            id: "metlife", 
-            job: "Cognizant (MetLife)" 
-        }, 
-        { 
-            id: "tts-devops", 
-            job: "Tech Talent South - DevOps" 
-        },
-        { 
-            id: "tts-js", 
-            job: "Tech Talent South - JS Applications" 
-        }, 
-        { 
-            id: "sealed-air", 
-            job: "Sealed Air/Diversey" 
-        }, 
-        { 
-            id: "tiy", 
-            job: "The Iron Yard" 
-        }, 
-        { 
-            id: "uncc", 
-            job: "UNCC" 
-        }, 
-        { 
-            id: "navy", 
-            job: "Navy" 
-        }, 
-        { 
-            id: "belmont-abbey", 
-            job: "Belmont Abbey" 
-        }, 
-        { 
-            id: "ncstate", 
-            job: "NC State" 
+    const [resume, setResume] = useState([]);
+    const npmBulletString = "List of NPM packages used:";
+    const URL_REGEX = /((?:https?:\/\/|www\.)[^\s<>"']+[^\s<>"'.,!?;:)\]}])/gi;
+
+    useEffect(() => {
+        fetch('https://davekeith-portfolio-86436-default-rtdb.firebaseio.com/resume.json')
+            .then(res => res.json())
+            .then(res => { setResume(res) })
+            .catch(err => console.log(err));
+    }, []);
+
+    const textWithLinks = (text) => {
+        console.log(text)
+        if (!text || typeof text !== "string") return text;
+
+        const parts = [];
+        let lastIndex = 0;
+        let match;
+
+        // Reset lastIndex in case the regex was used before
+        URL_REGEX.lastIndex = 0;
+
+        while ((match = URL_REGEX.exec(text)) !== null) {
+            const url = match[0];
+            const start = match.index;
+
+            if (start > lastIndex) {
+                parts.push(text.slice(lastIndex, start));
+            }
+
+            parts.push(
+                <a
+                    key={`${start}-${url}`}
+                    href={url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    {url}
+                </a>
+            );
+
+            lastIndex = start + url.length;
         }
-    ];
+
+        if (lastIndex < text.length) {
+            parts.push(text.slice(lastIndex));
+        }
+
+        return parts.length === 1 && typeof parts[0] === "string"
+            ? parts[0]
+            : parts;
+    }
 
     return <Fragment>
         <Headline text={"My Resume"} />
-        <TableOfContents title="Resume Index" contentsList={resumeList} />
+        <TableOfContents
+            title="Resume Index"
+            contentsList={resume.map(item => { return { job: item.job, id: item.id } })}
+        />
         <section className="content">
+            {resume.map(item => {
+                return <div className="job" id={item.id}>
+                    <h3>{item.job}</h3>
+                    <span>{item.timespan}</span>
+                    {item.title && <h4>{item.title}</h4>}
+                    <ul>
+                        {item.bulletpoints && item.bulletpoints.map(bullet => {
+                            if (bullet === npmBulletString) {
+                                return <li>{bullet}
+                                    <ul>
+                                        {item.npm_bulletpoints.map(p => {
+                                            return <li>
+                                                <a href={p.link} target="_blank" rel="noreferrer">{p.name}</a>
+                                            </li>
+                                        })}
+                                    </ul>
+                                </li>
+                            } else if (bullet === "Work Examples:") {
+                                return <li>
+                                    <b>{bullet}</b>
+                                    <ul>
+                                        {item.workexamples.map(example => {
+                                            return <li>{textWithLinks(example)}</li>
+                                        })}
+                                    </ul>
+                                </li>
+                            } else if (bullet === "Projects:") {
+                                return <li>
+                                    <b>{bullet}</b>
+                                    <ul>
+                                        {item.projects.map(project => {
+                                            return <li>{textWithLinks(project)}</li>
+                                        })}
+                                    </ul>
+                                </li>
+                            } else {
+                                return <li>{textWithLinks(bullet)}</li>
+                            }
+                        })}
+                    </ul>
+                </div>
+            })}
+        </section>
+        {/* <section className="content">
             <div className="job" id="charter">
                 <h3>Charter Communications</h3>
                 <span>Mar 2022-Present</span>
@@ -72,8 +117,37 @@ const Resume = () => {
                     <li>Set up the corresponding infrastructure from scratch, determining the proper technologies to use while considering the requirements and resources.</li>
                     <li>Worked with DevOps tools such as Jira, GitLab, and Portainer.</li>
                     <li>Designed the UI using advanced styling concepts such as pre-processors, responsive design, and utility classes.</li>
+                    <li>List of NPM packages used:
+                        <ul>
+                            <li>
+                                <a href="https://www.npmjs.com/package/axios" target="_blank" rel="noreferrer">
+                                    Axios
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.npmjs.com/package/react-hook-form" target="_blank" rel="noreferrer">
+                                    React Hooks Form
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.npmjs.com/package/exceljs" target="_blank" rel="noreferrer">
+                                    ExcelJS
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.npmjs.com/package/tiptap" target="_blank" rel="noreferrer">
+                                    TipTap
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.npmjs.com/package/3d-force-graph" target="_blank" rel="noreferrer">
+                                    3d Force Graph
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
-            </div>            
+            </div>
             <div className="job" id="diversey-freelance">
                 <h3>Diversey (Freelance)</h3>
                 <span>Aug 2020-Sept 2021</span>
@@ -173,7 +247,7 @@ const Resume = () => {
                     <li>Learned Ruby on Rails in an immersive software development environment</li>
                     <li>
                         <h4>Projects:</h4>
-                        <ul> 
+                        <ul>
                             <li><a href="https://github.com/insidethepark/RB" target="_blank" rel="noreferrer">https://github.com/insidethepark/RB</a></li>
                             <li><a href="https://github.com/DaveKeith/reddit_project" target="_blank" rel="noreferrer">https://github.com/DaveKeith/reddit_project</a></li>
                         </ul>
@@ -203,7 +277,7 @@ const Resume = () => {
                 <h3>NC State University</h3>
                 <span>2004-2006</span>
             </div>
-        </section>
+        </section> */}
     </Fragment>
 }
 

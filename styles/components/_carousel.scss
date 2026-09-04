@@ -1,5 +1,5 @@
 .carousel{
-    background-color: $color-alt-item;
+    background-color: var(--alt-item);
     border-radius: 10px;
 }
 
@@ -22,8 +22,8 @@
     display: none;
 }
 .carousel-control-prev, .carousel-control-next{
-    color: $color-primary;
-    background-color: $color-primary;
+    color: var(--accent);
+    background-color: var(--accent);
     opacity: 1 !important;
     width: 5rem;
     height: 5rem;
@@ -32,7 +32,7 @@
     transition: transform 0.3s cubic-bezier(0.075, 0.82, 0.165, 1.3);
 
     &:hover{
-        background-color: $color-primary-hover;
+        background-color: var(--accent-hover);
     }
 
     &:active{

@@ -1,10 +1,10 @@
 .me{
     p{
-        color: $color-text-light;
+        color: var(--text);
         line-height: 1.5;
 
         span{
-            color: black;
+            color: var(--heading);
             font-size: 2.4rem;
             font-weight: 300;
         }
@@ -23,7 +23,7 @@
     }
 
     &--alt-bg{
-        background-color: $color-alt-item;
+        background-color: var(--alt-item);
         padding-left: 2rem;
 
         @include respond(tab-port){
@@ -51,7 +51,7 @@
 
             img{
                 border-radius: 50% !important;
-                border: 2px solid $color-primary !important;
+                border: 2px solid var(--accent) !important;
             }
         }
 
@@ -75,7 +75,7 @@
 
             @include respond(tab-port){
                 margin-right: 0;
-                filter: drop-shadow(0 0 1rem $color-text-light);
+                filter: drop-shadow(0 0 1rem var(--text));
             }
         }
     }

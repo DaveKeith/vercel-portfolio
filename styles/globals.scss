@@ -2,6 +2,7 @@
 
 @import "abstracts/mixins";
 @import "abstracts/variables";
+@import "abstracts/theme";
 
 @import "base/animations";
 @import "base/base";
@@ -17,3 +18,5 @@
 @import "pages/home-grid";
 @import "pages/jobs";
 @import "pages/projects-grid";
+
+@import "tailwindcss";

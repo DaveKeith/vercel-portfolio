@@ -1,16 +1,17 @@
-import { Fragment, useState, useEffect } from 'react';
+import { Fragment, useState } from 'react';
 import Link from 'next/link';
 import HeaderNavLink from './header-nav-link';
+import LightDarkIcon from './light-dark-icon';
 
 import classes from '../../styles/modules/main-navigation.module.scss';
 
-function MainNavigation() {
+function MainNavigation({ toggleTheme }) {
   const [rotate, setRotate] = useState(classes["open-list"]);
 
   const mobileNav = () => {
-    if(rotate === classes["open-list"]){
+    if (rotate === classes["open-list"]) {
       setRotate(classes["exit-list"]);
-    }else{
+    } else {
       setRotate(classes["open-list"]);
     }
   }
@@ -24,25 +25,27 @@ function MainNavigation() {
           <span className={classes.line3} />
         </div>
         <ul onClick={mobileNav}>
-            <li>
-              <Link href='/'>Home</Link>
-            </li>
-            <li>
-              <Link href='/about-me'>About Me</Link>
-            </li>
-            <li>
-              <Link href='/about-the-site'>About the Site</Link>
-            </li>
-            <li>
-              <Link href='/projects'>Projects</Link>
-            </li>
-            <li>
-              <Link href='/resume'>Resume</Link>
-            </li>
+          <LightDarkIcon toggleTheme={toggleTheme} />
+          <li>
+            <Link href='/'>Home</Link>
+          </li>
+          <li>
+            <Link href='/about-me'>About Me</Link>
+          </li>
+          <li>
+            <Link href='/about-the-site'>About the Site</Link>
+          </li>
+          <li>
+            <Link href='/projects'>Projects</Link>
+          </li>
+          <li>
+            <Link href='/resume'>Resume</Link>
+          </li>
         </ul>
       </header>
       <header className={classes.desktopHeader}>
         <ul>
+          <LightDarkIcon toggleTheme={toggleTheme} />
           <HeaderNavLink hLink="/" text="Home" />
           <HeaderNavLink hLink="/about-me" text="About Me" />
           <HeaderNavLink hLink="/about-the-site" text="About The Site" />

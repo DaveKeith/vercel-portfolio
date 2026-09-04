@@ -5,8 +5,13 @@
     grid-template-rows: 1fr;
     gap: 3rem;
 
+    a{
+        text-decoration: none;
+        color: inherit;
+    }
+
     p{
-        color: $color-text-light;
+        color: var(--text);
     }
 
     @include respond(phone) { // width < 600?

@@ -4,19 +4,28 @@
     bottom: 10rem;
     width: 100vw;
     height: 100%;
-    z-index: -10;
-    // background-image: radial-gradient(
-    //     circle at center, 
-    //     rgba(255, 255, 255, 0.8) 0, 
-    //     rgba(255, 255, 255, 1) 65%), 
-    //     url(/imgs/davekeithpic.jpg);
-    background-image: radial-gradient(
-        circle at center, 
-        rgba(255, 255, 255, 0.99) 0, 
-        rgba(255, 255, 255, 0.9) 100%), 
-        url(/imgs/the-blends-2-1156219.jpg);
+    z-index: 0;
+    pointer-events: none;
     background-position: center -5rem;
     background-repeat: repeat-y;
     background-size: 100vw 100vw;
+}
+
+:root .bg-face,
+[data-theme='light'] .bg-face {
+    background-image: radial-gradient(
+        circle at center,
+        var(--bg-overlay) 0,
+        var(--bg-overlay-edge) 100%
+    ), url(/imgs/the-blends-2-1156219.jpg);
     filter: grayscale(1);
+}
+
+[data-theme='dark'] .bg-face {
+    background-image: radial-gradient(
+        circle at center,
+        var(--bg-overlay) 0,
+        var(--bg-overlay-edge) 100%
+    ), url(/imgs/grok-image-a71e7f23-b36a-4d70-a82d-6a45bf1a0ec9.jpg);
+    filter: grayscale(0.15);
 }

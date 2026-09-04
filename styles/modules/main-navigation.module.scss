@@ -3,8 +3,8 @@
 @import '../base/animations';
 
 .mobileHeader{
+    display: none;
     position: absolute;
-    margin-left: -10rem;
     transition: margin 1s;
 
     *{
@@ -12,6 +12,7 @@
     }
 
     @include respond(tab-port) { 
+        display: block;
         margin-top: 11rem;
         margin-left: 0rem;
     };
@@ -130,6 +131,8 @@
 }
 
 .desktopHeader{
+    position: relative;
+    z-index: 2;
     margin-top: 0;
     background-color: $color-primary;
     font-size: 2rem;
@@ -138,7 +141,7 @@
     transition: margin-top 1s;
 
     @include respond(tab-port) { 
-        margin-top: -10rem;
+        display: none;
     };
 
     a{

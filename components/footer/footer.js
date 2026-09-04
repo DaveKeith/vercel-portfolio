@@ -8,17 +8,17 @@ const Footer = () => {
     const [showPhoneNum, setShowPhoneNum] = useState(0);
 
     const revealEmail = () => {
-        if(showEmail === 0){
+        if (showEmail === 0) {
             setShowEmail(1);
-        }else{
+        } else {
             setShowEmail(0);
         }
     }
 
     const revealPhoneNum = () => {
-        if(showPhoneNum === 0){
+        if (showPhoneNum === 0) {
             setShowPhoneNum(1);
-        }else{
+        } else {
             setShowPhoneNum(0);
         }
     }
@@ -27,8 +27,8 @@ const Footer = () => {
         <footer className={classes.footerClass} id="footer">
             <ul>
                 <li>
-                    <a 
-                        href="https://www.linkedin.com/in/david-keith-70704989/" 
+                    <a
+                        href="https://www.linkedin.com/in/david-keith-70704989/"
                         target="_blank"
                         rel="noreferrer"
                         aria-label='LinkedIn Profile'
@@ -37,8 +37,8 @@ const Footer = () => {
                     </a>
                 </li>
                 <li>
-                    <a 
-                        href="https://github.com/DaveKeith" 
+                    <a
+                        href="https://github.com/DaveKeith"
                         target="_blank"
                         rel="noreferrer"
                         aria-label='GitHub Profile'
@@ -48,15 +48,26 @@ const Footer = () => {
                 </li>
                 <li>
                     <i className="bi bi-envelope" onClick={revealEmail} />
-                    <span className={classes["my-email"]} style={{transform: `scale(${showEmail})`, bottom: "20rem" }}>
+                    <span className={classes["my-email"]} style={{ transform: `scale(${showEmail})`, bottom: "20rem" }}>
                         d.keith78@yahoo.com
                     </span>
                 </li>
                 <li>
                     <i className='bi bi-phone' onClick={revealPhoneNum} />
-                    <span className={classes["my-phone-number"]} style={{transform: `scale(${showPhoneNum})`, bottom: "15rem"}}>
+                    <span className={classes["my-phone-number"]} style={{ transform: `scale(${showPhoneNum})`, bottom: "15rem" }}>
                         803-415-4207
                     </span>
+                </li>
+                <li>
+                    <a href="https://docs.google.com/document/d/1TqaZfZuaU8a1mVuaSsYgJeyU2XZ359xHMD7R404Baz0/export?format=pdf" target="_blank" rel="noreferrer">
+                        <div className={classes["resume-link"]}>
+                            <div>
+                                <div className="text-center">Resume</div>
+                                <div className="text-center">Download</div>
+                            </div>
+                            <i className="bi bi-filetype-pdf" />
+                        </div>
+                    </a>
                 </li>
             </ul>
         </footer>

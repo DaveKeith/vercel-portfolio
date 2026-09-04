@@ -5,6 +5,7 @@
     text-align: center;
     margin: 3rem;
     font-weight: 300;
+    color: var(--heading);
 
     @include respond(tab-port) { 
         margin: 5rem;

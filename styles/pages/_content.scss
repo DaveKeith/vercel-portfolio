@@ -2,6 +2,15 @@
     font-size: 1.4rem;
     width: 90rem;
     margin: auto;
+    color: var(--text);
+
+    a{
+        color: var(--link);
+    }
+
+    h3, h4{
+        color: var(--heading);
+    }
 
     @include respond(phone) { // width < 600
         max-width: 95%;

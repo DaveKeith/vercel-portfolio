@@ -13,19 +13,19 @@ function HeaderNavLink({text, hLink}){
     ){
         return <li key={text} className='active-nav'>
                 <Link href={hLink} passHref>
-                    <a>
+                    <div>
                         <div>{text}</div>
                         <div className='active-indicator' />
-                    </a>
+                    </div>
                 </Link>
             </li>
     }else{
         return <li key={text}>
                 <Link href={hLink} passHref>
-                    <a>
+                    <div>
                         <div>{text}</div>
                         <div className='active-indicator' />
-                    </a>
+                    </div>
                 </Link>
             </li>
     }
