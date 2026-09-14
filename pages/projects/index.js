@@ -17,8 +17,8 @@ const ProjectList = () => {
     return <Fragment>
         <Headline text={"List of Projects"} />
         <section className="content">
-            <p>{"Since my first role as a software developer, I've completed numerous projects.  I have a link to my GitHub page"} <a href="https://github.com/DaveKeith" target="_blank" rel="noreferrer">here</a> or you can click the icon on the <a href="http://localhost:3000/projects#footer">footer</a> of this page.</p>
-            <p className="fs-3 mb-5">{"Here's a list of several examples my projects:"}</p>
+            <p>{"Since my first role as a software developer, I've completed numerous projects.  I have a link to my GitHub page"} <a href="https://github.com/DaveKeith" target="_blank" rel="noreferrer">here</a> or you can click the icon on the <a href="#footer">footer</a> of this page.</p>
+            <p className="fs-3 mb-5">{"Here's a list of several examples of my projects:"}</p>
             <div className="projects-grid">
                 {projects.map((project, index) => (
                     <ProjectListItem key={index} id={index} project={project} />

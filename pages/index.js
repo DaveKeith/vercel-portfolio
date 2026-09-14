@@ -7,7 +7,7 @@ const HomePage = () => {
     return <Fragment>
         <Headline text="David Keith Portfolio Home" />
         <section className="content">
-            <p className="text-center">Here we break down the site and {"it's"} features.</p>
+            <p className="text-center">Here we break down the site and its features.</p>
             <div className="home-grid">
                 <Link href='/about-me' passHref>
                     <div className="home-grid__item home-grid__item--left">
@@ -29,7 +29,7 @@ const HomePage = () => {
                     <div className="home-grid__item home-grid__item--left">
                         <div>
                             <h2>Projects</h2>
-                            <p>Gives a list of some of my past projects.</p>
+                            <p>Screenshots and details of some of my past projects.</p>
                         </div>
                     </div>
                 </Link>
