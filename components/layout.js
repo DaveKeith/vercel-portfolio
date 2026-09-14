@@ -23,10 +23,13 @@ function Layout({ children }) {
     return () => media.removeEventListener('change', onPreferenceChange);
   }, []);
 
-  const toggleTheme = () => {
+  const toggleTheme = (mobileNav) => {
     const current = document.documentElement.getAttribute('data-theme') || 'light';
     const next = current === 'light' ? 'dark' : 'light';
     document.documentElement.setAttribute('data-theme', next);
+    if(mobileNav){
+      mobileNav();
+    }
 
     try {
       localStorage.setItem('theme', next);

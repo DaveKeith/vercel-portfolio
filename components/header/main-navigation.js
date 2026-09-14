@@ -25,7 +25,7 @@ function MainNavigation({ toggleTheme }) {
           <span className={classes.line3} />
         </div>
         <ul onClick={mobileNav}>
-          <LightDarkIcon toggleTheme={toggleTheme} />
+          <LightDarkIcon toggleTheme={() => toggleTheme(mobileNav)} />
           <li>
             <Link href='/'>Home</Link>
           </li>

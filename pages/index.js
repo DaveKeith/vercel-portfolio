@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const HomePage = () => {
     return <Fragment>
-        <Headline text={"Welcome to the Home Page!"} />
+        <Headline text="David Keith Portfolio Home" />
         <section className="content">
             <p className="text-center">Here we break down the site and {"it's"} features.</p>
             <div className="home-grid">
